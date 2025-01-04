@@ -10,6 +10,7 @@ out vec3 normal;
 out vec3 viewSpacePosition;
 out float blockId;
 out vec3 shadowLightDirection;
+out vec3 screenPos;
 
 uniform vec3 shadowLightPosition;
 uniform mat4 gbufferModelViewInverse;
@@ -24,6 +25,7 @@ void main() {
     // classic stuff
     normal = gl_NormalMatrix * gl_Normal;
     gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+    screenPos = (gl_ModelViewProjectionMatrix * gl_Vertex).xyz;
     texCoord = gl_MultiTexCoord0.xy;
     lightCoord = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
     vertexColor = gl_Color;

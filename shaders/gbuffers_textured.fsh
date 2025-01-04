@@ -15,6 +15,7 @@ in vec3 normal;
 in vec3 viewSpacePosition;
 in float blockId;
 in vec3 shadowLightDirection;
+in vec3 screenPos;
 
 // Con`lzni|verse8663
 
@@ -176,7 +177,7 @@ void main() {
     finalColor *= lightColor;
 
     // apply accumulated light
-    finalColor.xyz += ray.accumulatedLight;
+    //finalColor.xyz += ray.accumulatedLight;
 
     // fog based on distance
     float fogValue = vertexDistance < fogEnd ? smoothstep(fogStart, fogEnd, vertexDistance) : 1.0;
@@ -186,4 +187,6 @@ void main() {
 
     // apply color to pixel
     pixelColor = finalColor;
+
+    //pixelColor.rgb = vec3(texture(shadowtex0, (screenPos.xy/screenPos.z) * 0.5 + 0.5).r);
 }
